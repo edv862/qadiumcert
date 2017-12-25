@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block content-title %}
+    Certificates
+    <a class="pull-right" href={% url 'main:certificate-create' %}>
+        <button class="btn btn-success"><i class="fa fa-plus"></i> New certificate</button>
+    </a>
+{% endblock content-title %}
+
+{% block content %}
+    <table id="certificates" class="table table-striped table-bordered" width="100%">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Issuer</th>
+                <th>Expires</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        
+        <tbody>
+            {% for certificate in certificates %}
+                <tr>
+                    <td>{{ certificate.name }}</td>
+                    <td>{{ certificate.issuer }}</td>
+                    <td>{{ certificate.expires }}</td>
+                    <td>
+                        {% if certificate.is_expired %}
+                            <i class="fa fa-times"></i>
+                            Expired
+                        {% else %}
+                            <i class="fa fa-check"></i>
+                            Available
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+
+        <tfoot>
+            <tr>
+                <th>Name</th>
+                <th>Issuer</th>
+                <th>Expires</th>
+                <th>Actions</th>
+            </tr>
+        </tfoot>
+    </table>
+{% endblock content %}

@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load static bootstrap3 %}
+
+{% block css %}
+    <link rel="stylesheet" href={% static "css/bootstrap-datetimepicker.min.css" %}>
+{% endblock css %}
+
+{% block content-title %}
+    Create certificate
+{% endblock content-title %}
+
+{% block content %}
+    <form method="POST" novalidate>
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        <input type="submit" name="cert-form-submit" value="Submit">
+    </form>
+{% endblock content %}
+
+{% block js %}
+    <script src={% static "js/bootstrap-datepicker/bootstrap-datetimepicker.min.js" %}></script>
+{% endblock js %}
